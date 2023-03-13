@@ -1,19 +1,21 @@
 package it.polimi.ingsw;
 
-import jxl.*;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.List;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.format.Colour;
 import jxl.read.biff.BiffException;
+import jxl.write.Number;
+import jxl.write.*;
+
 import java.io.File;
 import java.io.IOException;
-import jxl.write.*;
-import jxl.write.Number;
-import jxl.format.Colour;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HelperExcel{
-    public Map<Integer, List<String>> readJExcel(String fileLocation) throws IOException, BiffException {
+    public Map<Integer, List<String>> readJExcel (String fileLocation) throws IOException, BiffException{
         Map<Integer, List<String>> data = new HashMap<>();
 
         Workbook workbook = Workbook.getWorkbook(new File(fileLocation));
@@ -21,16 +23,16 @@ public class HelperExcel{
         int rows = sheet.getRows();
         int columns = sheet.getColumns();
 
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0;i < rows;i++){
             data.put(i, new ArrayList<>());
-            for (int j = 0; j < columns; j++) {
+            for (int j = 0;j < columns;j++){
                 data.get(i).add(sheet.getCell(j, i).getContents());
             }
         }
         return data;
     }
 
-    public void writeJExcel() throws IOException, WriteException {
+    public void writeJExcel ( ) throws IOException, WriteException{
         WritableWorkbook workbook = null;
         try {
             File currDir = new File(".");
@@ -64,7 +66,7 @@ public class HelperExcel{
 
             workbook.write();
         } finally {
-            if (workbook != null) {
+            if (workbook != null){
                 workbook.close();
             }
         }

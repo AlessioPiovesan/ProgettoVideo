@@ -9,7 +9,6 @@ public class Main{
         Scanner in = new Scanner(System.in);
         int a = in.nextInt();
         if (a == 1) search();
-        else return;
     }
 
     private static void search ( ){

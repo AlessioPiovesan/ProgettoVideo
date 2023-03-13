@@ -47,15 +47,24 @@ public class Episode{
     }
 
     private String makeTitle (String nameSerie, int s, int e){
-        String name;
-        if (e < 10)
-            if (s < 10) name = nameSerie + " - s0" + s + "e00" + e;
-            else name = nameSerie + " - s" + s + "e00" + e;
-        else if (e < 100)
-            if (s < 10) name = nameSerie + " - s0" + s + "e0" + e;
-            else name = nameSerie + " - s" + s + "e0" + e;
-        else if (s < 10) name = nameSerie + " - s0" + s + "e" + e;
-        else name = nameSerie + " - s" + s + "e" + e;
+        String name = nameSerie + " - ";
+        if (s < 10){
+            name = name + "s0" + s;
+        }
+        else{
+            name = name + "s" + s;
+        }
+        if (e < 100){
+            if (e < 10){
+                name = name + "e00" + e;
+            }
+            else{
+                name = name + "e0" + e;
+            }
+        }
+        else{
+            name = name + "e" + e;
+        }
         return name;
     }
 

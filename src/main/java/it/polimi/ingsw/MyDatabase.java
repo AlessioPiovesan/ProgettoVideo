@@ -47,7 +47,7 @@ public class MyDatabase{
         return oavs;
     }
 
-    public LinkedList<Object> search (String title){
+    public List<Object> search (String title){
         LinkedList<Object> response = new LinkedList<>();
         new Thread(( ) -> {
             for (Movie movie: movies){

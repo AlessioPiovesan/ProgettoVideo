@@ -6,10 +6,9 @@ import java.util.Objects;
 
 public class MySeries{
     private static MySeries instance = null;
-    private static LinkedList<Serie> seriesList;
+    private static final LinkedList<Serie> seriesList = new LinkedList<>();
 
     private MySeries ( ){
-        seriesList = new LinkedList<>();
     }
 
     public static MySeries getInstance ( ){
