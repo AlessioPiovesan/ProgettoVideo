@@ -1,7 +1,9 @@
 package it.polimi.ingsw;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class MyDatabase{
     private static MyDatabase instance = null;
@@ -43,5 +45,25 @@ public class MyDatabase{
 
     public List<Oav> getOavs ( ){
         return oavs;
+    }
+
+    public LinkedList<Object> search (String title){
+        LinkedList<Object> response = new LinkedList<>();
+        new Thread(( ) -> {
+            for (Movie movie: movies){
+                if (Objects.equals(movie.getTitle(), title)) response.add(movie);
+            }
+        });
+        new Thread(( ) -> {
+            for (Episode episode: episodes){
+                if (Objects.equals(episode.getTitle(), title)) response.add(episode);
+            }
+        });
+        new Thread(( ) -> {
+            for (Oav oav: oavs){
+                if (Objects.equals(oav.getTitle(), title)) response.add(oav);
+            }
+        });
+        return response;
     }
 }
